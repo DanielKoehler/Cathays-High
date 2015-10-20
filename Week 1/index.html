@@ -158,7 +158,8 @@ while(cupsInTheSink > 0)
 
                     <section>
                         <h2> Lets build a 2d snake game </h2>
-                        <p> // here will be an image of the game (like in the tutorial)</p>
+                        <img data-src="unity_2d_snake.png">
+
                     </section>
                     <section>
                         <h2> What is an IDE? Which one are we gonna use? Why? </h2>
@@ -190,177 +191,45 @@ while(cupsInTheSink > 0)
                     </section>
                     <section>
                         <h2> How does the algorithm work ?</h2>
-                        <pre>
-                            <code class="hljs" data-trim contenteditable>
-using UnityEngine;
-using System.Collections;
-
-public class SpawnFood : MonoBehaviour {
-    // Food Prefab
-    public GameObject foodPrefab;
-
-    // Borders
-    public Transform borderTop;
-    public Transform borderBottom;
-    public Transform borderLeft;
-    public Transform borderRight;
-
-    // Use this for initialization
-    void Start () {
-        // Spawn food every 4 seconds, starting in 3
-        InvokeRepeating("Spawn", 3, 4);
-    }
-
-    // Spawn one piece of food
-    void Spawn() {
-        // x position between left & right border
-        int x = (int)Random.Range(borderLeft.position.x,
-        borderRight.position.x);
-
-        // y position between top & bottom border
-        int y = (int)Random.Range(borderBottom.position.y,
-        borderTop.position.y);
-
-        // Instantiate the food at (x, y)
-        Instantiate(foodPrefab,
-        new Vector2(x, y),
-        Quaternion.identity); // default rotation
-    }
-}
-
-</code>
-</pre>
-
-</section>
-<section>
-<h2> Lets try the spawning function </h2>
-<p> // here I will have a picture of the variables and explain how they can drag and drop / import them</p>
-<p> // demo of the result</p>
-</section>
-<section>
-<h2> Lets create the Snake </h2>
-<p> // Fast demo of importing the snake and setting the 1px size, Import it, Rename it</p>
-<p> // Make it a Rigidbody 2d, Set the "is Kinematic", Gravity scale to 0</p>
-<p> // Explain which one for what is it</p>
-<p> // Create the TailPreab (careful to rename again the Head element)</p>
-</section>
-<section>
-<h2> Lets write the code</h2>
-<pre>
-<code class="hljs" data-trim contenteditable>
-using UnityEngine;
-using System.Collections;
-using System.Collections.Generic;
-using System.Linq;
-
-public class Snake : MonoBehaviour {
-    // Current Movement Direction
-    // (by default it moves to the right)
-    Vector2 dir = Vector2.right;
-
-    // Use this for initialization
-    void Start () {
-        // Move the Snake every 300ms
-        InvokeRepeating("Move", 0.3f, 0.3f);    
-    }
-
-    // Update is called once per frame
-    void Update () {
-
-    }
-
-    void Move() {
-        // Move head into new direction
-        transform.Translate(dir);
-    }
-}
-</code>
-</pre>
-</section>
-<section>
-<h2> Lets try it! </h2>
-<p> // Demo of how to pixel is moving to the right of the screen </p>
-</section>
-<section>
-<h2> Lets start listening for keystrokes </h2>
-<pre>
-<code>
-// Update is called once per frame
-void Update() {
-    // Move in a new Direction?
-    if (Input.GetKey(KeyCode.RightArrow))
-        dir = Vector2.right;
-    else if (Input.GetKey(KeyCode.DownArrow))
-        dir = -Vector2.up;    // '-up' means 'down'
-    else if (Input.GetKey(KeyCode.LeftArrow))
-        dir = -Vector2.right; // '-right' means 'left'
-    else if (Input.GetKey(KeyCode.UpArrow))
-        dir = Vector2.up;
-}
-</code>
-</pre>
-</section>
-<section>
+                        <p> // I will have the code here and go through it</p>
+                    </section>
+                    <section>
+                        <h2> Lets try the spawning function </h2>
+                        <p> // here I will have a picture of the variables and explain how they can drag and drop / import them</p>
+                        <p> // demo of the result</p>
+                    </section>
+                    <section>
+                        <h2> Lets create the Snake </h2>
+                        <p> // Fast demo of importing the snake and setting the 1px size, Import it, Rename it</p>
+                        <p> // Make it a Rigidbody 2d, Set the "is Kinematic", Gravity scale to 0</p>
+                        <p> // Explain which one for what is it</p>
+                        <p> // Create the TailPreab (careful to rename again the Head element)</p>
+                    </section>
+                    <section>
+                        <h2> Lets write the code</h2>
+                        <p> // code snippet of the constructor with simple move</p>
+                    </section>
+                    <section>
+                        <h2> Lets try it! </h2>
+                        <p> // Demo of how to pixel is moving to the right of the screen </p>
+                    </section>
+                   <section>
+                        <h2> Lets start to listen for keystrokes </h2>
+                        <p> // code snippet of the update function</p>
+                        <p> // Again lets Demo it</p>
+                    </section>
+                    <section>
                         <h2> So how do we want the tail of the snake to move ? </h2>
                         <p> // Ask for some ideas of how the body should move and explain the solution we will provide</p>
                     </section>
                     <section>
                         <h2> Lets upgrade the Move function so there is a tail moving along</h2>
-                        <pre>
-                            <code>
-void Move() {
-    // Save current position (gap will be here)
-    Vector2 v = transform.position;
-
-    // Move head into new direction (now there is a gap)
-    transform.Translate(dir);
-
-    // Ate something? Then insert new Element into gap
-    if (ate) {
-        // Load Prefab into the world
-        GameObject g =(GameObject)Instantiate(tailPrefab, v, Quaternion.identity);
-
-        // Keep track of it in our tail list
-        tail.Insert(0, g.transform);
-
-        // Reset the flag
-        ate = false;
-    }
-    // Do we have a Tail?
-    else if (tail.Count > 0) {
-        // Move last Tail Element to where the Head was
-        tail.Last().position = v;
-
-        // Add to front of list, remove from the back
-        tail.Insert(0, tail.Last());
-        tail.RemoveAt(tail.Count-1);
-    }
-}
-
-                            </code>
-                        </pre>
                         <p> // here will be a code snippet of the new Move function</p>
                     </section>
                     <section>
                         <h2> Lets make so the snake can actually eat the food after collision</h2>
-                        <pre>
-                            <code>
-void OnTriggerEnter2D(Collider2D coll) {
-    // Food?
-    if (coll.name.StartsWith("FoodPrefab")) {
-        // Get longer in next Move call
-        ate = true;
-
-        // Remove the Food
-        Destroy(coll.gameObject);
-    }
-    // Collided with Tail or Border
-    else {
-        // ToDo 'You lose' screen
-    }
-}
-                            </code>
-                        </pre>
+                        <p> // code snippet of OnTriggerEnter2D function</p>
+                        <p> // Demo the whole thing</p>
                     </section>
                     <section>
                         <h2> Lets do a recap of what we did</h2>
