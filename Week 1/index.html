@@ -70,12 +70,27 @@
 							<li>Cross platform</li>
 						</ul>
 
+						<img src="editor.jpg" style="width: 50%; margin-top: 35px">
+						<p style="font-size: 10px"> source: https://demozcene.wordpress.com/2010/06/27/unity-3d-as-a-demo-platform-on-mac-os-x/ </p>
+
 						<aside class="notes">
 							<ul>
 								<li> Why is it good? - fast, free, abstract</li>
 								<li> Used in industry (next slides)</li>
 							</ul>
 						</aside>
+
+					</section>
+
+					<section>
+						<h2> Games built with Unity </h2>
+
+						<img src="ass.png">
+						<img src="ksp.png">
+						<img src="templerun.png">
+						<img src="rust.png">
+						<p style="font-size: 10px"> source: http://blog.soom.la/2015/01/top-10-unity-games-ever-made.html</p>
+
 
 					</section>
 				</section>
@@ -85,7 +100,7 @@
 
 						<h2><strong>C# Introduction</strong></h2>
 
-						Why C#? <br>
+						<img src="csharp.png" style="border:none; box-shadow: none;">
 
 						<aside class="notes">
 							- Unity scripting done in C#
@@ -98,16 +113,65 @@
 					<section>
 
 						<h2>Variables</h2>
-						Why C#?
-						<aside class="notes">
 
-							#variables
-							- Statically typed
-							  - compile vs runtime checking
-							- give some examples
+						<ul>
+							<li> C#: Statically typed</li>
+							<li> Python: Dynamically typed</li>
+						</ul>
 
 
-						</aside>
+						<h3 style="margin-top:50px;"> General Form C#</h3>
+
+						<pre><code class="hljs c#">
+type nameOfVariable = value;
+
+</code></pre>
+
+<aside class="notes">
+
+	- Statically typed
+		- compiler checking - stupid bugs caught
+  - dynamic
+		- quicker for programmer, bugs slip through
+
+
+</aside>
+
+					</section>
+
+					<section>
+
+						<h2>Variables</h2>
+						<h3 style="margin-top:50px;"> General Form C#</h3>
+
+						<pre><code class="hljs c#">
+type nameOfVariable = value;
+
+</code></pre>
+						<div style="width:50%; float: left;">
+						<h3>Python</h3>
+						<pre><code class="hljs python" data-trim contenteditable>
+some_number = 5
+some_string = "Unity is fun"
+some_list = [1, 2, 3, 4, 5]
+
+
+
+						</code></pre>
+					</div>
+
+						<div style="width:50%; float: left;">
+						<h3>C#</h3>
+						<pre><code class="hljs c#" data-trim contenteditable>
+int someNumber = 5;
+String someString = "Unity is fun";
+int[] numbers = {1, 2, 3, 4, 5};
+
+
+						</code></pre>
+					</div>
+
+
 
 					</section>
 
@@ -141,8 +205,22 @@
 
 						<h2> Logical Operators </h2>
 
+						<code>and ...</code>
 						<code>&&</code>
-						<code>and</code>
+
+						<br>
+						<code>not ...</code>
+						<code>!</code>
+
+						<br>
+						<code>or ...</code>
+						<code>||</code>
+
+						<br>
+						<code>+= ...</code>
+						<code>++</code>
+
+
 
 						<aside class="notes">
 	          	- only syntactically different
