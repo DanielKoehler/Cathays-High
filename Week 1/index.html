@@ -195,86 +195,161 @@ while(cupsInTheSink > 0)
 							</section>
 				</section>
 
-				<!-- Example of nested vertical slides -->
-				<section>
-					<section>
+<!-- Example of nested vertical slides -->
+<section>
+	<section>
 
-						<h2>Object Orientated Programming</h2>
+		<h2>Object Orientated Programming</h2>
 
-					</section>
-					<section>
+	</section>
+	<section>
 
-						<h3>	What benefits does <b>OO</b> programming offer?</h3>
+		<h3>Why use OO? </h3>
 
-						<ul>
+		<ul>
 
-							<li class="fragment">Inheritance</li>
-							<li class="fragment">Encapsulation – Re-use!</li>
+			<li class="fragment">Inheritance and Encapsulation of classes</li>
+			<li class="fragment">Libraries &amp; Frameworks</li>
+			<li class="fragment">A natural way to model real world 'things'</li>
+			<!-- <br> -->
+			<li class="fragment">Code Re-use!</li>
 
-							<!-- <p>Code re-use</p> -->
+		</ul>
 
-								<li class="fragment">Libraries; frameworks;</li>
+	</section>
 
-							</ul>
+	<section>
 
-					</section>
+		<h2>A quick reminder of some OO concepts</h2>	
 
-					<section>
-						<h2>Classes &amp; Objects</h2>
+	</section>
 
-<pre>
-<code>
- public class Snake : MonoBehaviour {
-  // Current Movement Direction
-  // (by default it moves to the right)
-  Vector2 dir = Vector2.right;
+	<section>
 
-  // Use this for initialization
-  void Start () {
-      // Move the Snake every 300ms
-      InvokeRepeating("Move", 0.3f, 0.3f);
-  }
+	<h2> Classes &amp; Instances </h2>
 
-  // Update is called once per frame
-  void Update () {
+<pre class="fragment"><code style="font-size:14px; line-height:22px">public class Vehicle  {
 
-  }
+	// Properties / Members
+	String name;
 
-  void Move() {
-      // Move head into new direction
-      transform.Translate(dir);
-  }
- }
+	// Constructor
+	public Vehicle(String aName){
+		this.name = aName;
+	}
+
+	// Instance Method.
+	public void start(){
+		// Code to start vehicle
+	}
+}</code></pre>
+
+<pre class="fragment">
+<code style="font-size:14px; line-height:22px">
+ Vehicle myCar = new Vehicle("Car");
+ Vehicle myBoat = new Vehicle("Boat");
+
 </code></pre>
+
+</section>
+<section>
+
+	<h2>Encapsulation</h2>
+
+<pre class="fragment"><code style="font-size:14px; line-height:22px">public class Engine  {
+	public void Start(){
+		// Start engine;
+	}
+}</code></pre>
+<pre class="fragment"><code style="font-size:14px; line-height:22px">public class Vehicle  {
+
+	Engine myEngine;
+
+	public void start(){
+		this.myEngine.start();
+	}
+}</code></pre>
+
+</section>
+<section>
+
+	<h2>Inheritance</h2>
+
+<pre class="fragment"><code style="font-size:14px; line-height:22px">public class Aeroplane : Vehicle  {
+
+	// Properties / Members
+	double leftAileronRotation;
+	double rightAileronRotation;
+	double engineSpeed;
+	double fuel;
+
+	// Constructor
+	public Aeroplane () {
+		this.fuel = 100.0D;
+	}
+
+	// Instance Method.
+	public void IncreseThrust(){
+		this.engineSpeed += 1.0D;
+	}
+}</code></pre>
 
 					</section>
 					<section>
 
 						<h2>Access modifiers</h2>
-						<p>That's it, time to go back up.</p>
-					</section>
-					<section>
 
-						<h2>Scope - Local/Global</h2>
-						<p>That's it, time to go back up.</p>
-					</section>
 
-					<section>
+<pre class="fragment"><code style="font-size:14px; line-height:22px">public class Aeroplane : Vehicle  {
 
-						<h2>Inheritance (Apple ->  Golden Apple)</h2>
+	public double engineSpeed;
+	private double airspeed;
 
-					</section>
-					<section>
+}</code></pre>
 
-						<h2>Coord systems.</h2>
+<pre class="fragment">
+<code style="font-size:14px; line-height:22px">Aeroplane myaeroplane = new Aeroplane();
+>> myaeroplane.airspeed
+0.0
+>> myaeroplane.engineSpeed
+Error: Unknown Property
+</code></pre>
 
-					</section>
-					<section>
 
-								<h2>Events / Listeners</h2>
+	</section>
 
-					</section>
-				</section>
+
+	<section>
+
+		<h2>Scope - Local/Global</h2>
+<pre>
+<code style="font-size:12px; line-height:16px">public class ScopeExample
+
+{
+	public int pens = 5;
+
+	void NumPens ()
+	{
+		Debug.Log(pens);
+	}
+
+	void AnotherNumPens ()
+	{
+		int pens = 5;
+		Debug.Log(pens);
+		Debug.Log(this.pens);
+	}
+
+	void ThingsToDrawWith (int pencils)
+	{
+		int thingsToDrawWith;
+		thingsToDrawWith = pens * pencils;
+		Debug.Log(thingsToDrawWith);
+	}
+}
+</code></pre>
+	</section>
+</section>
 
 					<section>
 
