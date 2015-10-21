@@ -433,89 +433,177 @@ Error: Unknown Property
 
                     <section>
                         <h2> Lets build a 2d snake game </h2>
-                        <img data-src="unity_2d_snake.png">
+                        <img data-src="/snake/unity_2d_snake.png">
 
                     </section>
                     <section>
                         <h2> What is an IDE? Which one are we gonna use? Why? </h2>
-                        <p> // here will be an image of the IDE (unity)</p>
+                        <img data-src="/snake/ide.png">
                     </section>
                     <section>
                         <h2> Lets get Started!</h2>
                     </section>
                     <section>
-                        <h2> Build the map</h2>
-                        <p> // here will be an image of how how the map should look like</p>
-                        <p> // I will make a demo of how to import the images and set them to be 1px</p>
-                        <p> // I need to tell them how to actually build the map (resize / position / camera)</p>
-                        <p> // Rename the borders</p>
-                        <p> // How to select the borders and make a collider</p>
+                    <h2> Build the map</h2>
+                        <img data-src="/snake/map.png">
+                    </section>
+                    <section>
+                        <ul>
+                        <li> Set Background</li>
+                        <li> Import the images and set them to be 1px</li>
+                        <li> Rename the borders</li>
+                        <li> Select the borders and make a collider</li>
+                        </ul>
                     </section>
                     <section>
                         <h2> Create the food element</h2>
-                        <p> // here will be an image of the fruit in the middle of the screen</p>
-                        <p> // I need to show them again how to import the food and set it to 1px, Position it, Rename it</p>
-                        <p> // Create a 2d Box Collider, check the "Is Trigger" option</p>
-                        <p> // Create FoodPrefab and remove the food from the Hirearchy</p>
+                        <ul>
+                        <li> Set it to 1px, Position it, Rename it</li>
+                        <li> Create a 2d Box Collider, check the "Is Trigger" option</li>
+                        <li> Create FoodPrefab and remove the food from the Hirearchy</li>
+                        </ul>
                     </section>
                     <section>
                         <h2> Spawning Food elements </h2>
-                        <p> // here will be an image many spawned food elements</p>
-                        <p> // Create the spawn food script</p>
-                        <p> // Introduction to MonoDevelop-Unity</p>
+                        <ul>
+                        <li> Create the spawn food script</li>
+                        <li> Introduction to MonoDevelop-Unity</li>
+                        </ul>
                     </section>
                     <section>
                         <h2> How does the algorithm work ?</h2>
-                        <p> // I will have the code here and go through it</p>
                     </section>
                     <section>
                         <h2> Lets try the spawning function </h2>
-                        <p> // here I will have a picture of the variables and explain how they can drag and drop / import them</p>
-                        <p> // demo of the result</p>
+                        <ul>
+                        <li> Drag and drop the variables</li>
+                        <li> demo</li>
+                        </ul>
                     </section>
                     <section>
                         <h2> Lets create the Snake </h2>
-                        <p> // Fast demo of importing the snake and setting the 1px size, Import it, Rename it</p>
-                        <p> // Make it a Rigidbody 2d, Set the "is Kinematic", Gravity scale to 0</p>
-                        <p> // Explain which one for what is it</p>
-                        <p> // Create the TailPreab (careful to rename again the Head element)</p>
+                        <p> Importing the snake and set it to 1px size, position it and rename it</p>
+                        <ul>
+                        <li> Make it a Rigidbody 2d, Set the "is Kinematic", Gravity scale to 0</li>
+                        <li> Create the TailPreab (careful to rename again the Head element)</li>
+                        </ul>
                     </section>
                     <section>
                         <h2> Lets write the code</h2>
-                        <p> // code snippet of the constructor with simple move</p>
+                        <pre><code>
+using UnityEngine;
+using System.Collections;
+using System.Collections.Generic;
+using System.Linq;
+
+public class Snake : MonoBehaviour {
+    // Current Movement Direction
+    // (by default it moves to the right)
+    Vector2 dir = Vector2.right;
+
+    // Use this for initialization
+    void Start () {
+    // Move the Snake every 300ms
+        InvokeRepeating("Move", 0.3f, 0.3f);    
+    }
+
+    // Update is called once per frame
+    void Update () {
+
+    }
+
+    void Move() {
+    // Move head into new direction
+        transform.Translate(dir);
+    }
+}
+                        </code></pre>
                     </section>
                     <section>
                         <h2> Lets try it! </h2>
-                        <p> // Demo of how to pixel is moving to the right of the screen </p>
                     </section>
                    <section>
                         <h2> Lets start to listen for keystrokes </h2>
-                        <p> // code snippet of the update function</p>
-                        <p> // Again lets Demo it</p>
+                        <pre><code>
+// Update is called once per frame
+void Update() {
+    // Move in a new Direction?
+    if (Input.GetKey(KeyCode.RightArrow))
+        dir = Vector2.right;
+    else if (Input.GetKey(KeyCode.DownArrow))
+        dir = -Vector2.up;    // '-up' means 'down'
+    else if (Input.GetKey(KeyCode.LeftArrow))
+        dir = -Vector2.right; // '-right' means 'left'
+    else if (Input.GetKey(KeyCode.UpArrow))
+        dir = Vector2.up;
+}
+                        </pre></code>
                     </section>
                     <section>
                         <h2> So how do we want the tail of the snake to move ? </h2>
-                        <p> // Ask for some ideas of how the body should move and explain the solution we will provide</p>
                     </section>
                     <section>
                         <h2> Lets upgrade the Move function so there is a tail moving along</h2>
-                        <p> // here will be a code snippet of the new Move function</p>
+                        <pre><code>
+void Move() {
+    // Save current position (gap will be here)
+    Vector2 v = transform.position;
+
+    // Move head into new direction (now there is a gap)
+    transform.Translate(dir);
+
+    // Ate something? Then insert new Element into gap
+    if (ate) {
+        // Load Prefab into the world
+        GameObject g =(GameObject)Instantiate(tailPrefab, v, Quaternion.identity);
+
+        // Keep track of it in our tail list
+        tail.Insert(0, g.transform);
+
+        // Reset the flag
+        ate = false;
+    }
+    // Do we have a Tail?
+    else if (tail.Count > 0) {
+        // Move last Tail Element to where the Head was
+        tail.Last().position = v;
+
+        // Add to front of list, remove from the back
+        tail.Insert(0, tail.Last());
+        tail.RemoveAt(tail.Count-1);
+    }
+}
+                        </code></pre>
                     </section>
                     <section>
                         <h2> Lets make so the snake can actually eat the food after collision</h2>
-                        <p> // code snippet of OnTriggerEnter2D function</p>
-                        <p> // Demo the whole thing</p>
+                        <pre><code>
+void OnTriggerEnter2D(Collider2D coll) {
+    // Food?
+    if (coll.name.StartsWith("FoodPrefab")) {
+        // Get longer in next Move call
+        ate = true;
+
+        // Remove the Food
+        Destroy(coll.gameObject);
+    }
+    // Collided with Tail or Border
+    else {
+        // ToDo 'You lose' screen
+    }
+}
+                        </code></pre>
                     </section>
                     <section>
                         <h2> Lets do a recap of what we did</h2>
-                        <p> // Here we need to summarize the steps which they took to create the 2d snake</p>
-                        <p> // Point out how easy and how little code is needed to make something cool</p>
                     </section>
                     <section>
-                        <h2> Ideas for improvement of the snake: </h2>
-                        <p> Make so the speed of the snake is changed depending of the amount of food eaten</p>
-                        <p> Make so only one food is visible and it respond only when the previous one is eaten</p>
-                        <p> Display the number eaten foods / points </p>
+                    <h2> Ideas for improvement of the snake: </h2>
+                        <ul>
+                        <li> Make so the speed of the snake is changed depending of the amount of food eaten</li>
+                        <li> Make so only one food is visible and it respond only when the previous one is eaten</li>
+                        <li> Display the number eaten foods / points </li>
+                        </ul>
                     </section>
 
 
