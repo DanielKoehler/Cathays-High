@@ -112,6 +112,90 @@
 
 					<section>
 
+						<h2> Some Syntax Differences... </h2>
+
+					</section>
+
+					<section>
+
+						<h2>Logical Operators</h2>
+
+						<code>and ...</code>
+						<code>&&</code>
+
+						<br>
+						<code>not ...</code>
+						<code>!</code>
+
+						<br>
+						<code>or ...</code>
+						<code>||</code>
+
+
+						<aside class="notes">
+	          	- only syntactically different
+
+					  </aside>
+					</section>
+
+					<section>
+
+						<h2>Statements</h2>
+
+
+							<h3 style="margin-top: 50px; margin-bottom:50px; color: #D91E18"> End with a semi-colon;</h3>
+
+
+						<div style="width:50%; float: left;">
+						<h3>Python</h3>
+						<pre><code class="hljs python" data-trim contenteditable>
+
+print("Hello world!")
+
+
+
+						</code></pre>
+					</div>
+
+						<div style="width:50%; float: left;">
+						<h3>C#</h3>
+						<pre><code class="hljs c#" data-trim contenteditable>
+Debug.Log("Hello world!");
+
+
+						</code></pre>
+					</div>
+
+
+
+					</section>
+
+					<section>
+						<h2> Indentation </h2>
+
+						<ul>
+							<li> Python: Code block </li>
+							<li> C#: Style </li>
+						</ul>
+
+<pre><code class="hljs c#" data-trim contenteditable>
+
+// python
+if(condition):
+	do_something()
+
+// c#
+if(condition)
+{
+	doSomething();
+}
+
+</code></pre>
+
+					</section>
+
+				<section>
+
 						<h2>Variables</h2>
 
 						<ul>
@@ -139,6 +223,8 @@ type nameOfVariable = value;
 
 					</section>
 
+
+
 					<section>
 
 						<h2>Variables</h2>
@@ -152,7 +238,7 @@ type nameOfVariable = value;
 						<h3>Python</h3>
 						<pre><code class="hljs python" data-trim contenteditable>
 some_number = 5
-some_string = "Unity is fun"
+some_string = "Unity"
 some_list = [1, 2, 3, 4, 5]
 
 
@@ -164,7 +250,7 @@ some_list = [1, 2, 3, 4, 5]
 						<h3>C#</h3>
 						<pre><code class="hljs c#" data-trim contenteditable>
 int someNumber = 5;
-String someString = "Unity is fun";
+String someString = "Unity";
 int[] numbers = {1, 2, 3, 4, 5};
 
 
@@ -179,6 +265,29 @@ int[] numbers = {1, 2, 3, 4, 5};
 
 						<h2>Functions</h2>
 
+						<ul>
+							<li>Access Modifier</li>
+							<li>Return type</li>
+							<li>Parameter types</li>
+						</ul>
+
+						<h3 style="margin-top:50px;">Example</h3>
+
+						<pre><code class="hljs c#" data-trim contenteditable>
+// Declaration
+public int AddNumbers(int number1, int number2){
+	int sum = number1 + number2;	// add the numbers
+	return sum;										// return result of addition
+}
+
+// Calling a function
+int result = AddNumbers(1, 2);
+
+// print out the result
+Debug.Log(result);
+</code></pre>
+
+
 						<aside class="notes">
 							- return type
 							  - void, int, float, custom_type etc...
@@ -190,9 +299,22 @@ int[] numbers = {1, 2, 3, 4, 5};
 					</section>
 					<section>
 
-						<h2> Conditionals </h2>
+						<h2> Control Flow - Conditionals </h2>
 
 						( IF Statements )
+
+<pre><code class="hljs c#" data-trim contenteditable>
+int dishesToWash = 2;
+
+if(dishesToWash < 10)
+{
+	Debug.Log("Go watch Netflix")
+}
+else
+{
+	Debug.Log("You should probably wash up")
+}
+</code></pre>
 
 					<aside class="notes">
           	- only syntactically different
@@ -201,38 +323,50 @@ int[] numbers = {1, 2, 3, 4, 5};
 
 					</section>
 
+
+
 					<section>
 
-						<h2> Logical Operators </h2>
+						<h2>Control flow - While Loops</h2>
+<pre><code class="hljs c#" data-trim contenteditable>
 
-						<code>and ...</code>
-						<code>&&</code>
+int choresCompleted = 2;
 
-						<br>
-						<code>not ...</code>
-						<code>!</code>
+while(choresCompleted > 0)
+{
+	Debug.Log("Do a chore");
+	choresCompleted--;
+}
 
-						<br>
-						<code>or ...</code>
-						<code>||</code>
+// OUTPUT:
+// Do a chore
+// Do a chore
 
-						<br>
-						<code>+= ...</code>
-						<code>++</code>
-
+</code></pre>
 
 
-						<aside class="notes">
-	          	- only syntactically different
-
-					  </aside>
 					</section>
 
 					<section>
 
-						<h2>Control flow</h2>
+						<h2>Control flow - For Loops</h2>
+
+<pre><code class="hljs c#" data-trim contenteditable>
+for(int choresDone = 0; choresDone < 2; choresDone++)
+{
+	Debug.Log("Completed chore: ", choresDone);
+}
+
+// OUTPUT:
+// Completed chore: 0
+// Completed chore: 1
+
+</code></pre>
+
 
 					</section>
+
+
 
 
 				</section>
@@ -240,9 +374,10 @@ int[] numbers = {1, 2, 3, 4, 5};
 				<section>
 					<section>
 
-							<h2>Python vs. C#</h2>
+							<h2>Python vs. C# - Exercise</h2>
 
-							<note>Code runner - interactive session? </note>
+							<img src="keyboard.png" style="border:none; box-shadow: none; width:50%;">
+
 					</section>
 					<section>
 
@@ -273,161 +408,86 @@ while(cupsInTheSink > 0)
 							</section>
 				</section>
 
-<!-- Example of nested vertical slides -->
-<section>
-	<section>
+				<!-- Example of nested vertical slides -->
+				<section>
+					<section>
 
-		<h2>Object Orientated Programming</h2>
+						<h2>Object Orientated Programming</h2>
 
-	</section>
-	<section>
+					</section>
+					<section>
 
-		<h3>Why use OO? </h3>
+						<h3>	What benefits does <b>OO</b> programming offer?</h3>
 
-		<ul>
+						<ul>
 
-			<li class="fragment">Inheritance and Encapsulation of classes</li>
-			<li class="fragment">Libraries &amp; Frameworks</li>
-			<li class="fragment">A natural way to model real world 'things'</li>
-			<!-- <br> -->
-			<li class="fragment">Code Re-use!</li>
+							<li class="fragment">Inheritance</li>
+							<li class="fragment">Encapsulation – Re-use!</li>
 
-		</ul>
+							<!-- <p>Code re-use</p> -->
 
-	</section>
+								<li class="fragment">Libraries; frameworks;</li>
 
-	<section>
+							</ul>
 
-		<h2>A quick reminder of some OO concepts</h2>	
+					</section>
 
-	</section>
+					<section>
+						<h2>Classes &amp; Objects</h2>
 
-	<section>
+<pre>
+<code>
+ public class Snake : MonoBehaviour {
+  // Current Movement Direction
+  // (by default it moves to the right)
+  Vector2 dir = Vector2.right;
 
-	<h2> Classes &amp; Instances </h2>
+  // Use this for initialization
+  void Start () {
+      // Move the Snake every 300ms
+      InvokeRepeating("Move", 0.3f, 0.3f);
+  }
 
-<pre class="fragment"><code style="font-size:14px; line-height:22px">public class Vehicle  {
+  // Update is called once per frame
+  void Update () {
 
-	// Properties / Members
-	String name;
+  }
 
-	// Constructor
-	public Vehicle(String aName){
-		this.name = aName;
-	}
-
-	// Instance Method.
-	public void start(){
-		// Code to start vehicle
-	}
-}</code></pre>
-
-<pre class="fragment">
-<code style="font-size:14px; line-height:22px">
- Vehicle myCar = new Vehicle("Car");
- Vehicle myBoat = new Vehicle("Boat");
-
+  void Move() {
+      // Move head into new direction
+      transform.Translate(dir);
+  }
+ }
 </code></pre>
-
-</section>
-<section>
-
-	<h2>Encapsulation</h2>
-
-<pre class="fragment"><code style="font-size:14px; line-height:22px">public class Engine  {
-	public void Start(){
-		// Start engine;
-	}
-}</code></pre>
-<pre class="fragment"><code style="font-size:14px; line-height:22px">public class Vehicle  {
-
-	Engine myEngine;
-
-	public void start(){
-		this.myEngine.start();
-	}
-}</code></pre>
-
-</section>
-<section>
-
-	<h2>Inheritance</h2>
-
-<pre class="fragment"><code style="font-size:14px; line-height:22px">public class Aeroplane : Vehicle  {
-
-	// Properties / Members
-	double leftAileronRotation;
-	double rightAileronRotation;
-	double engineSpeed;
-	double fuel;
-
-	// Constructor
-	public Aeroplane () {
-		this.fuel = 100.0D;
-	}
-
-	// Instance Method.
-	public void IncreseThrust(){
-		this.engineSpeed += 1.0D;
-	}
-}</code></pre>
 
 					</section>
 					<section>
 
 						<h2>Access modifiers</h2>
+						<p>That's it, time to go back up.</p>
+					</section>
+					<section>
 
+						<h2>Scope - Local/Global</h2>
+						<p>That's it, time to go back up.</p>
+					</section>
 
-<pre class="fragment"><code style="font-size:14px; line-height:22px">public class Aeroplane : Vehicle  {
+					<section>
 
-	public double engineSpeed;
-	private double airspeed;
+						<h2>Inheritance (Apple ->  Golden Apple)</h2>
 
-}</code></pre>
+					</section>
+					<section>
 
-<pre class="fragment">
-<code style="font-size:14px; line-height:22px">Aeroplane myaeroplane = new Aeroplane();
->> myaeroplane.airspeed
-0.0
->> myaeroplane.engineSpeed
-Error: Unknown Property
-</code></pre>
+						<h2>Coord systems.</h2>
 
+					</section>
+					<section>
 
-	</section>
+								<h2>Events / Listeners</h2>
 
-
-	<section>
-
-		<h2>Scope - Local/Global</h2>
-<pre>
-<code style="font-size:12px; line-height:16px">public class ScopeExample
-
-{
-	public int pens = 5;
-
-	void NumPens ()
-	{
-		Debug.Log(pens);
-	}
-
-	void AnotherNumPens ()
-	{
-		int pens = 5;
-		Debug.Log(pens);
-		Debug.Log(this.pens);
-	}
-
-	void ThingsToDrawWith (int pencils)
-	{
-		int thingsToDrawWith;
-		thingsToDrawWith = pens * pencils;
-		Debug.Log(thingsToDrawWith);
-	}
-}
-</code></pre>
-	</section>
-</section>
+					</section>
+				</section>
 
 					<section>
 
